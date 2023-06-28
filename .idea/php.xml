@@ -221,7 +221,7 @@
     </Psalm_settings>
   </component>
   <component name="PsalmOptionsConfiguration">
-    <option name="config" value="\\wsl$\Ubuntu-20.04\home\xedinunknown\projects\dhii\php-project\psalm.xml.dist" />
+    <option name="config" value="\\wsl$\Ubuntu-20.04\home\xedinunknown\projects\xedinunknown\clearvue-test\psalm.xml.dist" />
     <option name="showInfo" value="true" />
     <option name="transferred" value="true" />
   </component>
