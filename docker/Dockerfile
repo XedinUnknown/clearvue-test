@@ -31,7 +31,7 @@ WORKDIR ${BUILD_ROOT_PATH}
 COPY . ./
 
 
-FROM php:${PHP_TEST_VERSION}-cli as test
+FROM php:${PHP_TEST_VERSION}-fpm as test
 
 ARG BUILD_ROOT_PATH
 ARG NODE_VERSION
@@ -56,6 +56,7 @@ RUN npm install -g yarn
 
 WORKDIR ${BUILD_ROOT_PATH}
 COPY --from=build ${BUILD_ROOT_PATH} ${BUILD_ROOT_PATH}
+CMD ["php-fpm"]
 
 
 # Install PHP dev dependencies

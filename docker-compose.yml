@@ -37,10 +37,34 @@ services:
 
   frontend:
     image: node:${NODE_VERSION}
+    container_name: "${PROJECT_NAME}_frontend"
     working_dir: ${BUILD_ROOT_PATH}
+    depends_on:
+      - backend
     volumes:
       - '${BASE_PATH}:${BUILD_ROOT_PATH}'
     ports:
       - '${HMR_SERVER_PORT}:${HMR_SERVER_PORT}'
       - '${FRONTEND_SERVER_PORT}:${FRONTEND_SERVER_PORT}'
     command: ['yarn', 'dev']
+
+  backend:
+    image: nginx:latest
+    container_name: "${PROJECT_NAME}_backend"
+    working_dir: ${WEBROOT_PATH}
+    depends_on:
+      - test
+    volumes:
+      - ${BASE_PATH}:${WEBROOT_PATH}
+      - '${BASE_PATH}docker/nginx/templates:/etc/nginx/templates'
+      - '/dev/null:/etc/nginx/conf.d/default.conf'
+    env_file:
+      - .env
+    networks:
+      - clearvue
+    ports:
+      - ${BACKEND_SERVER_PORT}:${NGINX_PORT}
+
+networks:
+  clearvue:
+    driver: bridge
