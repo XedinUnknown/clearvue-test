@@ -32,3 +32,7 @@ services:
     working_dir: ${BUILD_ROOT_PATH}
     volumes:
       -  ${BASE_PATH}:${BUILD_ROOT_PATH}
+    ports:
+      - '${HMR_SERVER_PORT}:${HMR_SERVER_PORT}'
+      - '${FRONTEND_SERVER_PORT}:${FRONTEND_SERVER_PORT}'
+    command: ['yarn', 'dev']
