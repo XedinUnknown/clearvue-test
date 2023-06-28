@@ -32,6 +32,14 @@ services:
     working_dir: ${BUILD_ROOT_PATH}
     volumes:
       -  ${BASE_PATH}:${BUILD_ROOT_PATH}
+    networks:
+      - clearvue
+
+  frontend:
+    image: node:${NODE_VERSION}
+    working_dir: ${BUILD_ROOT_PATH}
+    volumes:
+      - '${BASE_PATH}:${BUILD_ROOT_PATH}'
     ports:
       - '${HMR_SERVER_PORT}:${HMR_SERVER_PORT}'
       - '${FRONTEND_SERVER_PORT}:${FRONTEND_SERVER_PORT}'
