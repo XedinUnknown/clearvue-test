@@ -1,6 +1,6 @@
 <?php
 
-namespace Me\Library\Test\Func;
+namespace Clearvue\Test1\Test\Func;
 
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;

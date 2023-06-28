@@ -1,6 +1,6 @@
 {
-  "name": "dhii/php-project",
-  "description": "A PHP starter to ease project creation",
+  "name": "xedinunknown/clearvue-test",
+  "description": "A test project for ClearVUE",
   "minimum-stability": "dev",
   "license": "MIT",
   "authors": [
@@ -21,12 +21,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Me\\Library\\": "src"
+      "Clearvue\\Test1\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Me\\Library\\Test\\Func\\": "tests/functional"
+      "Clearvue\\Test1\\Test\\Func\\": "tests/functional"
     }
   },
   "config": {
