@@ -10,6 +10,7 @@ services:
         PHP_BUILD_VERSION: $PHP_BUILD_VERSION
         BUILD_ROOT_PATH: $BUILD_ROOT_PATH
         PHP_TEST_VERSION: $PHP_TEST_VERSION
+        NODE_VERSION: $NODE_VERSION
     container_name: "${PROJECT_NAME}_build"
     working_dir: ${BUILD_ROOT_PATH}
     volumes:
@@ -26,6 +27,7 @@ services:
         BUILD_ROOT_PATH: $BUILD_ROOT_PATH
         PHP_BUILD_VERSION: $PHP_BUILD_VERSION
         PHP_TEST_VERSION: $PHP_TEST_VERSION
+        NODE_VERSION: $NODE_VERSION
     container_name: "${PROJECT_NAME}_test"
     working_dir: ${BUILD_ROOT_PATH}
     volumes:
