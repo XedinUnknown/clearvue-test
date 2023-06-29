@@ -54,6 +54,7 @@ services:
     working_dir: ${WEBROOT_PATH}
     depends_on:
       - test
+      - db
     volumes:
       - ${BASE_PATH}:${WEBROOT_PATH}
       - '${BASE_PATH}docker/nginx/templates:/etc/nginx/templates'
@@ -65,6 +66,25 @@ services:
     ports:
       - ${BACKEND_SERVER_PORT}:${NGINX_PORT}
 
+  db:
+    image: mariadb:latest
+    container_name: "${PROJECT_NAME}_db"
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+      MYSQL_DATABASE: $DB_NAME
+      MYSQL_USER: $DB_USER_NAME
+      MYSQL_PASSWORD: $DB_USER_PASSWORD
+    networks:
+      - clearvue
+    ports:
+      - '${DB_PORT}:${DB_PORT}'
+    volumes:
+      - db:/var/lib/mysql
+
 networks:
   clearvue:
     driver: bridge
+
+volumes:
+  db:
