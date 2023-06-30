@@ -15,6 +15,11 @@ RUN apt-get install -y zip unzip curl git
 ## Composer
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
+## Reds Extension
+RUN pecl install -o -f redis \
+&&  rm -rf /tmp/pear \
+&&  docker-php-ext-enable redis
+
 # Node
 RUN apt install -y curl
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
