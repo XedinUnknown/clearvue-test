@@ -55,6 +55,7 @@ services:
     depends_on:
       - test
       - db
+      - keyval
     volumes:
       - ${BASE_PATH}:${WEBROOT_PATH}
       - '${BASE_PATH}docker/nginx/templates:/etc/nginx/templates'
@@ -81,6 +82,17 @@ services:
       - '${DB_PORT}:${DB_PORT}'
     volumes:
       - db:/var/lib/mysql
+
+  keyval:
+    image: redis:latest
+    container_name: "${PROJECT_NAME}_keyval"
+    networks:
+      - clearvue
+    ports:
+      - '${KEYVAL_PORT}:${KEYVAL_PORT}'
+    volumes:
+      - "${BASE_PATH}docker/redis/redis.conf:/usr/local/etc/redis/redis.conf"
+    command: ['redis-server', ]
 
 networks:
   clearvue:

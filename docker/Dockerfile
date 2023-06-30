@@ -42,6 +42,11 @@ RUN pecl install xdebug-3.2.1
 RUN docker-php-ext-install pcntl
 RUN docker-php-ext-install posix
 
+## Reds Extension
+RUN pecl install -o -f redis \
+&&  rm -rf /tmp/pear \
+&&  docker-php-ext-enable redis
+
 # Node
 RUN apt install -y curl
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
