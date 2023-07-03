@@ -78,6 +78,10 @@
       <path value="$PROJECT_DIR$/vendor/fidry/cpu-core-counter" />
       <path value="$PROJECT_DIR$/vendor/spatie/array-to-xml" />
       <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/container-interop/service-provider" />
+      <path value="$PROJECT_DIR$/vendor/dhii/collections-interface" />
+      <path value="$PROJECT_DIR$/vendor/dhii/containers" />
+      <path value="$PROJECT_DIR$/vendor/dhii/services" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
