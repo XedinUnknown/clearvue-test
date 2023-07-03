@@ -3,6 +3,7 @@ server {
     root ${WEBROOT_PATH};
     location / {
         index index.php;
+        try_files $uri $uri/ /index.php?$args;
     }
     location ~ \.php$ {
         include fastcgi_params;
