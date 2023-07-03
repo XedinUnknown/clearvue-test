@@ -13,6 +13,7 @@
   "require": {
     "php": "^7.4 | ^8.0",
     "ext-redis": "*",
+    "ext-json": "*",
     "dhii/containers": "^0.1.4",
     "container-interop/service-provider": "^v0.4",
     "dhii/services": "^0.1.1",

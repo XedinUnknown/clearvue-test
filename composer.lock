@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb0c0604936c14da104c489e7c709205",
+    "content-hash": "f0a1dbbccbaad9c86ddb5f49a726f7da",
     "packages": [
         {
             "name": "container-interop/service-provider",
@@ -4600,12 +4600,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "8d1876a8a380162ff25143798b8ce046b2c7a69f"
+                "reference": "8fe1f15791f35f26ad42c911ca76759fa9a5064b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/8d1876a8a380162ff25143798b8ce046b2c7a69f",
-                "reference": "8d1876a8a380162ff25143798b8ce046b2c7a69f",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/8fe1f15791f35f26ad42c911ca76759fa9a5064b",
+                "reference": "8fe1f15791f35f26ad42c911ca76759fa9a5064b",
                 "shasum": ""
             },
             "require": {
@@ -4626,7 +4626,7 @@
                 "felixfbecker/language-server-protocol": "^1.5.2",
                 "fidry/cpu-core-counter": "^0.4.1 || ^0.5.1",
                 "netresearch/jsonmapper": "^1.0 || ^2.0 || ^3.0 || ^4.0",
-                "nikic/php-parser": "^4.14",
+                "nikic/php-parser": "^4.16",
                 "php": "^7.4 || ~8.0.0 || ~8.1.0 || ~8.2.0",
                 "sebastian/diff": "^4.0 || ^5.0",
                 "spatie/array-to-xml": "^2.17.0 || ^3.0",
@@ -4699,7 +4699,7 @@
                 "issues": "https://github.com/vimeo/psalm/issues",
                 "source": "https://github.com/vimeo/psalm/tree/master"
             },
-            "time": "2023-07-02T10:59:01+00:00"
+            "time": "2023-07-03T21:30:25+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -4820,7 +4820,8 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^7.4 | ^8.0",
-        "ext-redis": "*"
+        "ext-redis": "*",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
