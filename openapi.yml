@@ -1,0 +1,19 @@
+openapi: 3.0.0
+info:
+  title: ClearVUE Test
+  description: An API spec for a test project.
+  version: 0.1.0
+servers:
+  - url: /api
+    description: Dev Server
+paths:
+  /categories:
+    get:
+      summary: Returns a list of categories.
+      description: These are event categories, according to the task.
+      operationId: clearvue/test1/api/handlers/categories/list
+      responses:
+        '200':
+          description: A list of Category objects.
+          content:
+            application/json: {}
