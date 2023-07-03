@@ -20,12 +20,12 @@ return
          * @psalm-suppress UnresolvableInclude
          * @var array<string, Factory> $factories
          */
-        $factories = (require_once("$srcDir/factories.php"))($rootDir);
+        $factories = (require_once("$srcDir/factories.php"))($mainFilePath);
         /**
          * @psalm-suppress UnresolvableInclude
          * @var array<string, Extension> $extensions
          */
-        $extensions = (require_once("$srcDir/extensions.php"))($rootDir);
+        $extensions = (require_once("$srcDir/extensions.php"))();
 
         $services = new ServiceProvider($factories, $extensions);
         $container = new DelegatingContainer($services);

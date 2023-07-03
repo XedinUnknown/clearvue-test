@@ -18,11 +18,13 @@ use Slim\Factory\AppFactory;
         require_once $autoload;
     }
 
-
+    // Bootstrap
     /** @psalm-suppress UnresolvableInclude  */
     $bootstrap = require_once "$rootDir/src/bootstrap.php";
     /** @var ContainerInterface $appContainer */
     $appContainer = $bootstrap($mainFilePath);
+
+    // Initialize app
     /** @var bool $isDebug */
     $isDebug = $appContainer->get('clearvue/test1/is_debug');
 
