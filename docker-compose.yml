@@ -82,6 +82,7 @@ services:
       - '${DB_PORT}:${DB_PORT}'
     volumes:
       - db:/var/lib/mysql
+      - ${BASE_PATH}docker/mysql/data:/docker-entrypoint-initdb.d
 
   keyval:
     image: redis:latest
