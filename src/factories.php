@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use cebe\openapi\Reader;
 use cebe\openapi\spec\OpenApi;
+use Clearvue\Test1\Handlers\City\ListHandler;
 use Dhii\Services\Factories\StringService;
 use Dhii\Services\Factories\Value;
 use Dhii\Services\Factory;
@@ -40,15 +41,7 @@ return function (string $mainFilePath): array {
         }),
         'clearvue/test1/api/handlers/categories/list' => new Factory([
         ], function () {
-            return function (RequestInterface $request, ResponseInterface $response): ResponseInterface {
-                $categories = [];
-
-                $response = $response->withAddedHeader('Content-Type', 'application/json');
-                $response->getBody()
-                    ->write((string) json_encode($categories));
-
-                return $response;
-            };
+            return new ListHandler();
         }),
     ];
 };
