@@ -11,6 +11,7 @@ ARG NODE_VERSION
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 RUN apt-get update
 RUN apt-get install -y zip unzip curl git
+RUN docker-php-ext-install pdo pdo_mysql
 
 ## Composer
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
@@ -44,8 +45,7 @@ ARG NODE_VERSION
 # PHP
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 RUN pecl install xdebug-3.2.1
-RUN docker-php-ext-install pcntl
-RUN docker-php-ext-install posix
+RUN docker-php-ext-install pcntl posix pdo pdo_mysql
 
 ## Reds Extension
 RUN pecl install -o -f redis \

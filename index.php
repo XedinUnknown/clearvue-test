@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use cebe\openapi\spec\OpenApi;
+use Dotenv\Dotenv;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Slim\Factory\AppFactory;
@@ -16,6 +17,10 @@ use Slim\Interfaces\RouteCollectorProxyInterface;
         /** @psalm-suppress UnresolvableInclude  */
         require_once $autoload;
     }
+
+    // Env vars
+    $config = Dotenv::createImmutable($rootDir);
+    $config->load();
 
     // Bootstrap
     /** @psalm-suppress UnresolvableInclude  */
