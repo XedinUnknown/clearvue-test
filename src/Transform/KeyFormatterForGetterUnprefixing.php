@@ -9,7 +9,10 @@ use RuntimeException;
 
 class KeyFormatterForGetterUnprefixing implements KeyFormatter
 {
-    /** @var string */
+    /**
+     * @phpcs:ignore SlevomatCodingStandard.TypeHints.UselessConstantTypeHint.UselessVarAnnotation
+     * @var string
+     */
     protected const GETTER_PREFIX = 'get_';
 
     public function __construct(

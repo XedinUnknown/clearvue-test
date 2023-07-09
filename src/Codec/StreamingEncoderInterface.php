@@ -19,6 +19,7 @@ interface StreamingEncoderInterface
     /**
      * Encodes the given data in a steam.
      *
+     * @phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification
      * @param Subject $data The data to encode.
      *
      * @return StreamInterface The stream that encoded data will be written to.

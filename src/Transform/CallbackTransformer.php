@@ -32,7 +32,7 @@ class CallbackTransformer implements TransformerInterface
      * @param In $value The value to transform.
      * @return Out The transformation result.
      */
-    public function transform($value)
+    public function transform(mixed $value): mixed
     {
         $callback = $this->callback;
 

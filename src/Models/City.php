@@ -45,7 +45,7 @@ class City
     /**
      * Retrieves the label.
      *
-     * @return string
+     * @return string The label.
      */
     public function getLabel(): string
     {

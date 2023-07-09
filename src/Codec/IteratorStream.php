@@ -16,9 +16,6 @@ class IteratorStream implements StreamInterface
     protected string $data = '';
     protected ?Iterator $iterator = null;
 
-    /**
-     * @param Iterator $iterator
-     */
     public function __construct(Iterator $iterator)
     {
         $this->iterator = $iterator;

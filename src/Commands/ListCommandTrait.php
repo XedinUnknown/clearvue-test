@@ -24,9 +24,10 @@ trait ListCommandTrait
     /**
      * Retrieve all commands from the current table.
      *
-     * @param int|null $perPage
-     * @param int $page
-     * @return SelectResultInterface<Shape>
+     * @param int|null $perPage The number of items to retrieve per page. Unlimited if `null`.
+     * @param int $page The page index.
+     *
+     * @return SelectResultInterface<Shape> The selected result.
      */
     protected function getAll(string $tableName, ?int $perPage = null, int $page = 0): SelectResultInterface
     {
@@ -35,9 +36,7 @@ trait ListCommandTrait
         $offset = $page > 0 && $perPage !== null
             ? $page * $perPage
             : 0;
-        $limit = $perPage !== null
-            ? $perPage
-            : PHP_INT_MAX;
+        $limit = $perPage ?? PHP_INT_MAX;
 
         $query = "SELECT SQL_CALC_FOUND_ROWS * FROM `{$tableName}` LIMIT :offset, :limit";
         // This allows PDO to buffer one row at a time in memory

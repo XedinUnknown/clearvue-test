@@ -18,7 +18,7 @@ class CallbackIterator implements Iterator
     /** @var Iterator<TKey, OGValue> */
     protected Iterator $innerIterator;
     /** @var ?TValue */
-    protected $current = null;
+    protected mixed $current = null;
     /** @var callable(OGValue, TKey, static): TValue */
     protected $callback;
 

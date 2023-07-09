@@ -19,7 +19,9 @@ use Psr\Http\Message\ResponseInterface;
 class ListHandler implements HandlerInterface
 {
     /**
+     * @phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification)
      * @param ListCommand<array, Item> $listCommand
+     * @phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification)
      * @param StreamingEncoderInterface<iterable> $encoder
      * @param SerializerInterface<array<string, scalar>, Item> $serializer
      * @param FormatInterface<iterable<scalar|iterable<scalar>>, Item> $responseFormat

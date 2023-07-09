@@ -16,7 +16,11 @@ use UnexpectedValueException;
  */
 class PdoSelectResult implements SelectResultInterface, Iterator
 {
-    /** @var FetchMode */
+    /**
+     * @phpcs:ignore SlevomatCodingStandard.TypeHints.UselessConstantTypeHint.UselessDocComment
+     * @phpcs:ignore SlevomatCodingStandard.TypeHints.UselessConstantTypeHint.UselessVarAnnotation
+     * @var FetchMode
+     */
     protected const FETCH_MODE = PDO::FETCH_ASSOC;
 
     protected PDOStatement $select;

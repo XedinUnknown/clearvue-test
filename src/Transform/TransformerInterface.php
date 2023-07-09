@@ -17,11 +17,13 @@ use RuntimeException;
 interface TransformerInterface
 {
     /**
+     * Transforms the provided value.
+     *
      * @param In $value The value to transform.
      *
      * @return Out The result of the transformation.
      *
      * @throws RuntimeException If problem transforming.
      */
-    public function transform($value);
+    public function transform(mixed $value): mixed;
 }

@@ -20,6 +20,7 @@ interface SerializerInterface
      *
      * @param In $object The object to serialize.
      *
+     * @phpcs:ignore SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification
      * @return Out The result of serialization.
      *
      * @throws RuntimeException If problem serializing.
