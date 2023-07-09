@@ -5,28 +5,26 @@ declare(strict_types=1);
 namespace Clearvue\Test1;
 
 use Iterator;
-use IteratorAggregate;
-use OuterIterator;
 use UnexpectedValueException;
 
 /**
  * @template TKey
- * @template TValue
- * @psalm-type array = array
+ * @template-covariant TValue
+ * @template OGValue
  * @implements Iterator<TKey, TValue>
  */
 class CallbackIterator implements Iterator
 {
-    /** @var Iterator<TKey, array> */
+    /** @var Iterator<TKey, OGValue> */
     protected Iterator $innerIterator;
     /** @var ?TValue */
     protected $current = null;
-    /** @var callable(array, TKey, static): TValue */
+    /** @var callable(OGValue, TKey, static): TValue */
     protected $callback;
 
     /**
-     * @param Iterator<TKey, array> $innerIterator
-     * @param callable(array, TKey, static): TValue $callback
+     * @param Iterator<TKey, OGValue> $innerIterator
+     * @param callable(OGValue, TKey, static): TValue $callback
      */
     public function __construct(Iterator $innerIterator, callable $callback)
     {
@@ -100,7 +98,7 @@ class CallbackIterator implements Iterator
     /**
      * Retrieves the inner iterator.
      *
-     * @return Iterator<TKey, array> The inner iterator.
+     * @return Iterator<TKey, OGValue> The inner iterator.
      */
     protected function getInnerIterator(): Iterator
     {

@@ -38,12 +38,8 @@ class DataKeyFormat implements FormatInterface
         yield $this->dataKey => $data;
 
         $meta = [];
-
         $meta[static::KEY_RESOURCE_TYPE] = $this->getResourceType($resource);
-
-        if (count($meta)) {
-            yield $this->metaKey => $meta;
-        }
+        yield $this->metaKey => $meta;
     }
 
     /**

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Clearvue\Test1\Codec;
 
+use Exception;
 use Iterator;
 use Psr\Http\Message\StreamInterface;
 use RuntimeException;
@@ -16,7 +17,7 @@ class IteratorStream implements StreamInterface
     protected ?Iterator $iterator = null;
 
     /**
-     * @param Iterator|null $iterator
+     * @param Iterator $iterator
      */
     public function __construct(Iterator $iterator)
     {
@@ -28,7 +29,11 @@ class IteratorStream implements StreamInterface
      */
     public function __toString()
     {
-        return $this->getContents();
+        try {
+            return $this->getContents();
+        } catch (Exception) {
+            return 'ERROR';
+        }
     }
 
     /**
@@ -43,10 +48,9 @@ class IteratorStream implements StreamInterface
      */
     public function detach()
     {
-        $iterable = $this->iterator;
         $this->iterator = null;
 
-        return $iterable;
+        return null;
     }
 
     /**
@@ -67,10 +71,17 @@ class IteratorStream implements StreamInterface
 
     /**
      * @inheritDoc
+     *
+     * @throws RuntimeException If problem determining state.
      */
     public function eof()
     {
-        return $this->index !== 0 && !$this->iterator->valid();
+        if ($this->iterator === null) {
+            throw new RuntimeException('This stream is detached');
+        }
+
+        return $this->index !== 0
+            && !$this->iterator->valid();
     }
 
     /**
@@ -83,6 +94,8 @@ class IteratorStream implements StreamInterface
 
     /**
      * @inheritDoc
+     *
+     * @return never
      */
     public function seek(int $offset, int $whence = SEEK_SET)
     {
@@ -91,6 +104,8 @@ class IteratorStream implements StreamInterface
 
     /**
      * @inheritDoc
+     *
+     * @return never
      */
     public function rewind()
     {
@@ -127,6 +142,9 @@ class IteratorStream implements StreamInterface
     public function read(int $length)
     {
         $iterator = $this->iterator;
+        if ($iterator === null) {
+            throw new RuntimeException('This stream is detached');
+        }
 
         // Ensure enough content
         do {

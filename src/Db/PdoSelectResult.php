@@ -11,9 +11,12 @@ use UnexpectedValueException;
 
 /**
  * A result of a `SELECT` PDO query.
+ *
+ * @psalm-type FetchMode = PDO::FETCH_*
  */
 class PdoSelectResult implements SelectResultInterface, Iterator
 {
+    /** @var FetchMode */
     protected const FETCH_MODE = PDO::FETCH_ASSOC;
 
     protected PDOStatement $select;
@@ -21,7 +24,7 @@ class PdoSelectResult implements SelectResultInterface, Iterator
 
     /** @var ?mixed */
     protected $currentData;
-    protected $currentIndex = 0;
+    protected int $currentIndex = 0;
 
     /**
      * @param PDOStatement $select A prepared and executed `SELECT` statement.
@@ -39,21 +42,6 @@ class PdoSelectResult implements SelectResultInterface, Iterator
     public function getFoundRowsCount(): int
     {
         return $this->rowsFound;
-    }
-
-    /**
-     * Retrieves the configured iterator for the statement.
-     */
-    protected function getIterator(): Iterator
-    {
-        if ($this->iterator === null) {
-            $statement = $this->select;
-            $statement->setFetchMode(PDO::FETCH_ASSOC);
-
-            $this->iterator = $statement->getIterator();
-        }
-
-        return $this->iterator;
     }
 
     /**

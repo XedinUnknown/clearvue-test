@@ -9,6 +9,10 @@ use Violet\StreamingJsonEncoder\BufferJsonEncoder;
 
 /**
  * Can encode data into the JSON format.
+ *
+ * @psalm-immutable
+ * @template-covariant Subject of iterable
+ * @implements StreamingEncoderInterface<Subject>
  */
 class JsonStreamingEncoder implements StreamingEncoderInterface
 {
@@ -31,6 +35,7 @@ class JsonStreamingEncoder implements StreamingEncoderInterface
     {
         $encoder = new BufferJsonEncoder($data);
         if ($this->isPrettyPrint) {
+            /** @psalm-suppress ImpureMethodCall */
             $encoder->setOptions(JSON_PRETTY_PRINT);
         }
 

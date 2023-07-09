@@ -13,6 +13,12 @@ use Iterator;
 use IteratorIterator;
 use PDO;
 
+/**
+ * Functionality for a simple list command.
+ *
+ * @template-covariant Shape of array
+ * @template-covariant Model of object
+ */
 trait ListCommandTrait
 {
     /**
@@ -20,13 +26,13 @@ trait ListCommandTrait
      *
      * @param int|null $perPage
      * @param int $page
-     * @return SelectResultInterface<array>
+     * @return SelectResultInterface<Shape>
      */
     protected function getAll(string $tableName, ?int $perPage = null, int $page = 0): SelectResultInterface
     {
         $db = $this->getConnection();
 
-        $offset = $page > 0
+        $offset = $page > 0 && $perPage !== null
             ? $page * $perPage
             : 0;
         $limit = $perPage !== null
@@ -45,10 +51,19 @@ trait ListCommandTrait
         return new PdoSelectResult($statement, $totalRows);
     }
 
-    protected function hydrateSelected(SelectResultInterface $selectResult): SelectResultInterface
-    {
-        $hydrator = $this->getHydrator();
+    /**
+     * Hydrates the elements of a select result.
+     *
+     * @param SelectResultInterface<Shape> $selectResult The select result to hydrate.
+     * @param TransformerInterface<Model, Shape> $hydrator The hydrator used to hydrate results.
+     * @return SelectResultInterface<Model> A select result with elements hydrated.
+     */
+    protected function hydrateSelected(
+        SelectResultInterface $selectResult,
+        TransformerInterface $hydrator
+    ): SelectResultInterface {
         // Ensure iterator
+        /** @var Iterator<array-key, Shape> $iterator */
         $iterator = !$selectResult instanceof Iterator
             ? $selectResult
             : new IteratorIterator($selectResult);
@@ -56,6 +71,10 @@ trait ListCommandTrait
         return new IteratorSelectResult(
             new CallbackIterator(
                 $iterator,
+                /**
+                 * @psalm-param Shape $data
+                 * @return Model
+                 */
                 function (array $data) use ($hydrator): object {
                     return $hydrator->transform($data);
                 }
@@ -70,11 +89,4 @@ trait ListCommandTrait
      * @return PDO The connection.
      */
     abstract protected function getConnection(): PDO;
-
-    /**
-     * Retrieves the DTO hydrator.
-     *
-     * @return TransformerInterface The transformer used to hydrate DTOs.
-     */
-    abstract protected function getHydrator(): TransformerInterface;
 }

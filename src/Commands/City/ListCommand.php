@@ -11,41 +11,38 @@ use PDO;
 
 /**
  * Retrieves a list of DTOs.
+ *
+ * @template-covariant DTO of array
+ * @template-covariant Model of object
  */
 class ListCommand
 {
+    /** @use ListCommandTrait<DTO, Model> */
     use ListCommandTrait;
-
-    protected const MAX_ROWS = PHP_INT_MAX;
-
-    protected PDO $db;
-    protected string $tableName;
-    /** @var TransformerInterface<object, array> */
-    protected TransformerInterface $hydrator;
 
     /**
      * @param PDO $db The database connection.
      * @param string $tableName The name of the table to list items from.
-     * @param TransformerInterface<object, array> $hydrator The transformer that hydrates item data into objects.
+     * @param TransformerInterface<Model, DTO> $hydrator The transformer that hydrates item data into objects.
      */
-    public function __construct(PDO $db, string $tableName, TransformerInterface $hydrator)
-    {
-        $this->db = $db;
-        $this->tableName = $tableName;
-        $this->hydrator = $hydrator;
+    public function __construct(
+        protected PDO $db,
+        protected string $tableName,
+        protected TransformerInterface $hydrator
+    ) {
     }
 
     /**
-     * Retrieves a list of DTOs.
+     * Retrieves a list of models.
      *
-     * @param int|null $perPage
-     * @param int $page
-     * @return SelectResultInterface
+     * @param int|null $perPage How many records per page to retrieve, or no limit if `null`.
+     * @param int $page The index of the result page.
+     * @return SelectResultInterface<Model> A select result with hydrated models.
      */
     public function listAll(?int $perPage = null, int $page = 0): SelectResultInterface
     {
         $records = $this->getAll($this->tableName, $perPage, $page);
-        $objects = $this->hydrateSelected($records);
+        $objects = $this->hydrateSelected($records, $this->hydrator);
 
         return $objects;
     }
@@ -56,13 +53,5 @@ class ListCommand
     protected function getConnection(): PDO
     {
         return $this->db;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getHydrator(): TransformerInterface
-    {
-        return $this->hydrator;
     }
 }

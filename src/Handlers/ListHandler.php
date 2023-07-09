@@ -14,10 +14,16 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Lists API objects.
  *
- * @template T
+ * @template Item of object
  */
 class ListHandler implements HandlerInterface
 {
+    /**
+     * @param ListCommand<array, Item> $listCommand
+     * @param StreamingEncoderInterface<iterable> $encoder
+     * @param SerializerInterface<array<string, scalar>, Item> $serializer
+     * @param FormatInterface<iterable<scalar|iterable<scalar>>, Item> $responseFormat
+     */
     public function __construct(
         protected ListCommand $listCommand,
         protected StreamingEncoderInterface $encoder,

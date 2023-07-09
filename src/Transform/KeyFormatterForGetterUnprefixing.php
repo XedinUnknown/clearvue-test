@@ -9,6 +9,7 @@ use RuntimeException;
 
 class KeyFormatterForGetterUnprefixing implements KeyFormatter
 {
+    /** @var string */
     protected const GETTER_PREFIX = 'get_';
 
     public function __construct(
@@ -48,7 +49,7 @@ class KeyFormatterForGetterUnprefixing implements KeyFormatter
     {
         // Remove prefix if key starts with it
         $prefix = static::GETTER_PREFIX;
-        if (substr($key, 0, strlen($prefix)) === $prefix) {
+        if (str_starts_with($key, $prefix)) {
             $key = substr($key, strlen($prefix));
         }
 
