@@ -7,7 +7,9 @@ use cebe\openapi\spec\OpenApi;
 use Clearvue\Test1\Codec\CachingEncoder;
 use Clearvue\Test1\Codec\JsonStreamingEncoder;
 use Clearvue\Test1\Codec\StreamingEncoderInterface;
+use Clearvue\Test1\Commands\GetCommand;
 use Clearvue\Test1\Commands\ListCommand;
+use Clearvue\Test1\Handlers\GetHandler;
 use Clearvue\Test1\Handlers\ListHandler;
 use Clearvue\Test1\Models\City;
 use Clearvue\Test1\Transform\DataKeyFormat;
@@ -92,6 +94,12 @@ return function (string $mainFilePath): array {
             'clearvue/test1/api/serializer/city_serializer',
             'clearvue/test1/api/format',
         ]),
+        'clearvue/test1/api/handlers/city/get' => new Constructor(GetHandler::class, [
+            'clearvue/test1/data/commands/city/get',
+            'clearvue/test1/api/codec',
+            'clearvue/test1/api/serializer/city_serializer',
+            'clearvue/test1/api/format',
+        ]),
         'clearvue/test1/api/formats/data_key_format' => new Factory([], function (): FormatInterface {
             return new DataKeyFormat('data', 'meta');
         }),
@@ -139,6 +147,12 @@ return function (string $mainFilePath): array {
             'clearvue/test1/data/transformer/city_hydrator',
         ], function (PDO $connection, TransformerInterface $hydrator): ListCommand {
             return new ListCommand($connection, 'city', $hydrator);
+        }),
+        'clearvue/test1/data/commands/city/get' => new Factory([
+            'clearvue/test1/db/primary/connection',
+            'clearvue/test1/data/transformer/city_hydrator',
+        ], function (PDO $connection, TransformerInterface $hydrator): GetCommand {
+            return new GetCommand($connection, 'city', 'id', $hydrator);
         }),
     ];
 };

@@ -22,6 +22,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CityList'
+  /cities/{id}:
+    get:
+      summary: Returns a single City.
+      description: A City, in which events may take place
+      operationId: clearvue/test1/api/handlers/city/get
+      responses:
+        '200':
+          description: A single City object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CityGet'
 
 components:
   schemas:
@@ -73,6 +85,13 @@ components:
                     properties:
                       data:
                         $ref: '#/components/schemas/City'
+    CityGet:
+      allOf:
+        - $ref: '#/components/schemas/SingleEntity'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/City'
 
     City:
       type: object
