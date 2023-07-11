@@ -25,6 +25,21 @@ paths:
 
 components:
   schemas:
+    SingleEntity:
+      type: object
+      description: A single entity
+      properties:
+        data:
+          type: object
+          description: The entity's data.
+        meta:
+          type: object
+          description: Info about the entity.
+          properties:
+            type:
+              type: string
+              description: The entity type.
+
     EntityList:
       type: object
       description: A list of entities.
@@ -33,19 +48,7 @@ components:
           type: array
           description: The main list data.
           items:
-            type: object
-            description: A list of resources.
-            properties:
-              data:
-                type: object
-                description: A single entity.
-              meta:
-                type: object
-                description: Info about the entity.
-                properties:
-                  type:
-                    type: string
-                    description: The entity type.
+            $ref: '#/components/schemas/SingleEntity'
         meta:
           type: object
           description: Info about the list.
@@ -64,10 +67,12 @@ components:
             data:
               type: array
               items:
-                type: object
-                properties:
-                  data:
-                    $ref: '#/components/schemas/City'
+                allOf:
+                  - $ref: '#/components/schemas/SingleEntity'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/City'
 
     City:
       type: object
