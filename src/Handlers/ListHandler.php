@@ -8,7 +8,7 @@ use Clearvue\Test1\Codec\StreamingEncoderInterface;
 use Clearvue\Test1\Commands\ListCommand;
 use Clearvue\Test1\Transform\FormatInterface;
 use Clearvue\Test1\Transform\SerializerInterface;
-use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -37,7 +37,7 @@ class ListHandler implements HandlerInterface
     /**
      * @inheritDoc
      */
-    public function __invoke(RequestInterface $request, ResponseInterface $response): ResponseInterface
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
         $serializer = $this->serializer;
         $encoder = $this->encoder;
