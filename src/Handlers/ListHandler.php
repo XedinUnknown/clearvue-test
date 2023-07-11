@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Clearvue\Test1\Handlers;
 
 use Clearvue\Test1\Codec\StreamingEncoderInterface;
-use Clearvue\Test1\Commands\City\ListCommand;
+use Clearvue\Test1\Commands\ListCommand;
 use Clearvue\Test1\Transform\FormatInterface;
 use Clearvue\Test1\Transform\SerializerInterface;
 use Psr\Http\Message\RequestInterface;

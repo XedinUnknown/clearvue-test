@@ -7,7 +7,7 @@ use cebe\openapi\spec\OpenApi;
 use Clearvue\Test1\Codec\CachingEncoder;
 use Clearvue\Test1\Codec\JsonStreamingEncoder;
 use Clearvue\Test1\Codec\StreamingEncoderInterface;
-use Clearvue\Test1\Commands\City\ListCommand;
+use Clearvue\Test1\Commands\ListCommand;
 use Clearvue\Test1\Handlers\ListHandler;
 use Clearvue\Test1\Models\City;
 use Clearvue\Test1\Transform\DataKeyFormat;

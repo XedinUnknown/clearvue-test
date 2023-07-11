@@ -2,15 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Clearvue\Test1\Commands\City;
+namespace Clearvue\Test1\Commands;
 
-use Clearvue\Test1\Commands\ListCommandTrait;
 use Clearvue\Test1\Db\SelectResultInterface;
 use Clearvue\Test1\Transform\TransformerInterface;
 use PDO;
 
 /**
- * Retrieves a list of DTOs.
+ * Retrieves a list of models.
  *
  * @template-covariant DTO of array
  * @template-covariant Model of object
