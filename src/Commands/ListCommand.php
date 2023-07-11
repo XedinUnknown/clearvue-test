@@ -21,12 +21,12 @@ class ListCommand
 
     /**
      * @param PDO $db The database connection.
-     * @param string $tableName The name of the table to list items from.
+     * @param string $entityName The name of the entity to list items of.
      * @param TransformerInterface<Model, DTO> $hydrator The transformer that hydrates item data into objects.
      */
     public function __construct(
         protected PDO $db,
-        protected string $tableName,
+        protected string $entityName,
         protected TransformerInterface $hydrator
     ) {
     }
@@ -40,7 +40,7 @@ class ListCommand
      */
     public function listAll(?int $perPage = null, int $page = 0): SelectResultInterface
     {
-        $records = $this->getAll($this->tableName, $perPage, $page);
+        $records = $this->getAll($this->entityName, $perPage, $page);
         $objects = $this->hydrateSelected($records, $this->hydrator);
 
         return $objects;

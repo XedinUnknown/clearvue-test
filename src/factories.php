@@ -138,7 +138,7 @@ return function (string $mainFilePath): array {
             'clearvue/test1/db/primary/connection',
             'clearvue/test1/data/transformer/city_hydrator',
         ], function (PDO $connection, TransformerInterface $hydrator): ListCommand {
-            return new ListCommand($connection, 'cities', $hydrator);
+            return new ListCommand($connection, 'city', $hydrator);
         }),
     ];
 };

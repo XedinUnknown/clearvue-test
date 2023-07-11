@@ -1,4 +1,4 @@
-CREATE TABLE `cities`
+CREATE TABLE `city`
 (
     `id`    INT(10) unsigned NOT NULL AUTO_INCREMENT,
     `label` VARCHAR(255),
