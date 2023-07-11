@@ -3801,12 +3801,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c57fd134e8095176bf4cdc55877bdf1dc00a21eb"
+                "reference": "d64ea7dbc7aa495c64fd035298302c48ce27be18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c57fd134e8095176bf4cdc55877bdf1dc00a21eb",
-                "reference": "c57fd134e8095176bf4cdc55877bdf1dc00a21eb",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d64ea7dbc7aa495c64fd035298302c48ce27be18",
+                "reference": "d64ea7dbc7aa495c64fd035298302c48ce27be18",
                 "shasum": ""
             },
             "require": {
@@ -3896,7 +3896,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-07-06T09:21:55+00:00"
+            "time": "2023-07-10T06:39:22+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -4992,12 +4992,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "d148febc2a2eb82972121d7f962883f7a5697b55"
+                "reference": "d4155005ebafba6c32cc08a6db3ba157cd5f747d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/d148febc2a2eb82972121d7f962883f7a5697b55",
-                "reference": "d148febc2a2eb82972121d7f962883f7a5697b55",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/d4155005ebafba6c32cc08a6db3ba157cd5f747d",
+                "reference": "d4155005ebafba6c32cc08a6db3ba157cd5f747d",
                 "shasum": ""
             },
             "require": {
@@ -5042,7 +5042,7 @@
                 "source": "https://github.com/squizlabs/PHP_CodeSniffer",
                 "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
             },
-            "time": "2023-05-26T22:32:02+00:00"
+            "time": "2023-07-11T07:18:29+00:00"
         },
         {
             "name": "symfony/console",
@@ -5660,12 +5660,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "b12e4f215f2c013187e74d62d69377eb0654c412"
+                "reference": "5cb25574108dc5dbe7348e7e0e6fcd6266116746"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/b12e4f215f2c013187e74d62d69377eb0654c412",
-                "reference": "b12e4f215f2c013187e74d62d69377eb0654c412",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/5cb25574108dc5dbe7348e7e0e6fcd6266116746",
+                "reference": "5cb25574108dc5dbe7348e7e0e6fcd6266116746",
                 "shasum": ""
             },
             "require": {
@@ -5759,7 +5759,7 @@
                 "issues": "https://github.com/vimeo/psalm/issues",
                 "source": "https://github.com/vimeo/psalm/tree/master"
             },
-            "time": "2023-07-06T21:25:49+00:00"
+            "time": "2023-07-09T13:10:01+00:00"
         },
         {
             "name": "webmozart/path-util",
