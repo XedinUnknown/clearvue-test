@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use cebe\openapi\Reader;
 use cebe\openapi\spec\OpenApi;
+use Clearvue\Test1\Codec\CachingEncoder;
 use Clearvue\Test1\Codec\JsonStreamingEncoder;
+use Clearvue\Test1\Codec\StreamingEncoderInterface;
 use Clearvue\Test1\Commands\City\ListCommand;
 use Clearvue\Test1\Handlers\ListHandler;
 use Clearvue\Test1\Models\City;
@@ -56,10 +58,15 @@ return function (string $mainFilePath): array {
             return $validationMiddleware;
         }),
         'clearvue/test1/api/is_pretty_print' => new Alias('clearvue/test1/is_debug'),
-        'clearvue/test1/api/codec/streaming_json_encoder' => new Factory([
+        'clearvue/test1/api/codecs/streaming_json_encoder' => new Factory([
             'clearvue/test1/api/is_pretty_print',
         ], function (bool $isPrettyPrint) {
             return new JsonStreamingEncoder($isPrettyPrint);
+        }),
+        'clearvue/test1/api/codec' => new Factory([
+            'clearvue/test1/api/codecs/streaming_json_encoder',
+        ], function (StreamingEncoderInterface $encoder): StreamingEncoderInterface {
+            return new CachingEncoder($encoder);
         }),
         'clearvue/test1/data/hydration_key_formatter' => new Factory([
         ], function (): KeyFormatter {
@@ -81,7 +88,7 @@ return function (string $mainFilePath): array {
         'clearvue/test1/api/serializer/city_serializer' => new Alias('clearvue/test1/data/dehydrating_serializer'),
         'clearvue/test1/api/handlers/city/list' => new Constructor(ListHandler::class, [
             'clearvue/test1/data/commands/city/list',
-            'clearvue/test1/api/codec/streaming_json_encoder',
+            'clearvue/test1/api/codec',
             'clearvue/test1/api/serializer/city_serializer',
             'clearvue/test1/api/format',
         ]),
