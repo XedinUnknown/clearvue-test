@@ -75,6 +75,14 @@ class CachingStream implements StreamInterface
     public function getSize()
     {
         $stream = $this->stream;
+        if ($stream === null) {
+            if ($this->data === null) {
+                return null;
+            }
+
+            return strlen($this->data);
+        }
+
         $childSize = $stream->getSize();
 
         if ($childSize !== null) {
@@ -135,7 +143,7 @@ class CachingStream implements StreamInterface
                 $size = $this->getSize();
                 if ($size === null) {
                     throw new UnexpectedValueException(
-                        sprintf('Unable to determine end position: underlying stream size unknown')
+                        'Unable to determine end position: underlying stream size unknown'
                     );
                 }
 
