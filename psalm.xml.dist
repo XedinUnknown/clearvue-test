@@ -21,6 +21,7 @@
         allowFileIncludes="true"
 >
     <projectFiles>
+        <file name="index.php" />
         <directory name="src"/>
     </projectFiles>
 
